@@ -1,154 +1,81 @@
-# 📖 Wikied
-> 위키드, 남들이 만드는 나만의 위키
+<img width="1591" height="892" alt="image" src="https://github.com/user-attachments/assets/a0185531-f002-4f59-b4df-0e462988524d" />
 
-> 배포 URL:
-> <br>개발 기간: 2025. 04. 22 ~ 2025. 05. 12
+https://wikied-steel.vercel.app/
 
-<br>
+## 프로젝트 개요
+### 역할
+팀장, 프론트엔드, 프로덕트 디자인
 
-<img width="1193" alt="image" src="https://github.com/user-attachments/assets/dbe58a05-ef86-42d8-9377-28aac66b9f19" />
+### 기간
+2025년 4월 22일 ~ 5월 12일(약 3주)
 
-<br/>
+### 설명
+‘너의 TMI, 내가 정리해줌'
+나무위키의 '인물 버전'이라는 컨셉에서 출발한 소셜 위키 플랫폼입니다.
+친구들 사이의 재미있는 TMI를 위키 형식으로 함께 기록하고 공유하는 서비스입니다. 팀장을 맡아 프로젝트의 전반적인 기획과 개발을 이끌었습니다.
 
-<p align="center">
-<img src="https://img.shields.io/badge/NEXT.JS-000000?style=for-the-badge&logo=next.js&logoColor=white" 
-/> <img src="https://img.shields.io/badge/TYPESCRIPT-3178C6?style=for-the-badge&logo=typescript&logoColor=white" />
-<img src="https://img.shields.io/badge/STYLED_COMPONENTS-DB7093?style=for-the-badge&logo=styled-components&logoColor=white" />
-<img src="https://img.shields.io/badge/REACT_QUILL_NEW-A42967?style=for-the-badge&logo=react-quill-new&logoColor=white" />
-<img src="https://img.shields.io/badge/LOTTIE-1ABC9C?style=for-the-badge&logo=lottie&logoColor=white" />
-</br>
-<img src="https://img.shields.io/badge/MATTER.JS-4B5562?style=for-the-badge&logo=matter.js&logoColor=white" />
-<img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white" />
-<img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white" />
-<img src="https://img.shields.io/badge/discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" />
-<img src="https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=notion&logoColor=white" />
-</p>
-</br>
+---
 
-## 💭 Wikied 소개 
-- Wikied는 사람들의 이야기를 기록하고 공유할 수 있는 커뮤니티 플랫폼입니다. 
-- 사용자는 로그인 후 자신만의 위키 페이지를 자유롭게 작성하고 수정할 수 있으며, 다른 유저의 위키나 게시글을 검색하고 열람할 수 있습니다. 
-- 또한, 댓글과 좋아요 기능을 통해 사용자 간 소통이 가능하며, 직관적인 인터페이스와 반응형 UI로 누구나 어디서든 편리하게 사용할 수 있도록 만들어졌습니다.
+## 문제와 해결
+-   프론트엔드 아키텍처: 인증 및 상태 관리 시스템 설계
+-   협업 및 버전 관리: Git 히스토리 충돌 해결
+-   UI/UX 및 최적화: 사용자 경험 디테일 개선
+-   CSS-in-JS: Styled Components와 SSR의 상충 관계
 
-## <br>👩🏻‍💻팀원 소개 
+---
 
-<table>
-  <tr>
-    <td><img src="https://avatars.githubusercontent.com/u/82707286?v=4" width="100"></td>
-    <td><img src="https://avatars.githubusercontent.com/u/134246428?v=4" width="100"></td>
-    <td><img src="https://avatars.githubusercontent.com/u/193219745?v=4" width="100"></td>
-    <td><img src="https://avatars.githubusercontent.com/u/192935871?v=4" width="100"></td>
-    <td><img src="https://avatars.githubusercontent.com/u/87702194?v=4" width="100"></td>
-  </tr>
-  <tr>
-    <th><a href="https://github.com/kim-1997">김성빈</a></th>
-    <th><a href="https://github.com/KingsMinn">김승민</a></th>
-    <th><a href="https://github.com/BANGHoYeong">방호영</a></th>
-    <th><a href="https://github.com/zeon0xx0">조지현</a></th>
-    <th><a href="https://www.naver.com">최혜윤</a></th>
-  </tr>
-</table>
-</br>
+## 프론트엔드 아키텍처: 인증 및 상태 관리 시스템 설계
+-   **문제 정의:** 3주라는 짧은 개발 기간 내에 자체 로그인 시스템과 안전한 인증 시스템을 구축해야 했음. 또한 페이지 새로고침 시에도 사용자 로그인 상태가 유지되어야 했으며, 여러 컴포넌트에서 사용자 데이터를 공유하기 위한 효율적인 전역 상태 관리 전략이 필요했음.
+-   **해결 과정:**
+    -   **인증 시스템 대안 분석:**
+        1.  자체 JWT 토큰 기반 시스템 구현
+        2.  NextAuth.js 라이브러리 도입
+        
+        1은 자유도가 높지만 보안 취약점(CSRF, XSS)에 대한 직접적인 대응이 필요하고 개발 시간이 오래 걸린다고 판단함. 2는 소셜 로그인 Provider를 제공하고, 보안이 검증되었으며, 개발 시간을 획기적으로 단축할 수 있어 최종 선택함.
+        
+    -   **상태 관리 대안 분석:** Redux, Zustand를 검토함. Redux는 보일러플레이트가 많았고, 프로젝트 규모에 비해 과했음. 보일러플레이트가 거의 없고, 빠르고 효율적으로 개발 가능한 `Zustand`를 최종 선택하여 개발 생산성을 극대화함.
+-   **결과:** `NextAuth.js` 도입으로 인증 시스템 구축 시간을 단축하여, 팀이 서비스 핵심 기능 개발에 더 집중할 수 있었음. `Zustand`를 통해 상태관리의 효율성을 높임.
+-   **확장:** 향후 Refresh Token 자동 갱신 로직을 구현하여 세션 만료 시간을 유연하게 관리하여 사용자 경험을 향상시킬 수 있음.
 
-## 📂 폴더 구조
-```bash
-my-next-project/
-├── components/          # 재사용 가능한 UI 컴포넌트 모음
-│   ├── common/          # 여러 곳에서 쓰이는 진짜 공통 컴포넌트 (예: Button, Input)
-│   └── feature/         # 특정 기능(feature) 관련 컴포넌트 (예: PostCard, UserProfile)
-├── hooks/               # 커스텀 React Hooks
-├── lib/                 # 프로젝트 전반에서 사용되는 유틸리티 함수, 클라이언트 등 (예: api.ts)
-├── node_modules/        # 설치된 패키지들 (신경 안 써도 됨)
-├── pages/               # 페이지 라우터 핵심 폴더
-│   ├── api/             # API 라우트 핸들러들
-│   │   └── auth/
-│   │       └── [...nextauth].ts
-│   │   └── ... (다른 API들)
-│   ├── _app.tsx         # 모든 페이지 감싸는 공통 레이아웃/설정 파일
-│   ├── _document.tsx    # Styled Components SSR 설정 위한 파일
-│   ├── _error.tsx       # (선택) 공통 에러 페이지
-│   ├── index.tsx        # 홈페이지 (루트 경로 '/')
-│   └── ... (다른 페이지들)
-├── public/              # 정적 파일 (이미지, 폰트 등)
-│   └── favicon.ico
-├── styles/              # 전역 스타일 및 스타일 관련 파일 모음
-│   ├── globals.css      # 전역 CSS (기본 스타일 초기화 등)
-│   ├── theme.ts         # 스타일드 컴포넌트 테마 정의 파일
-│   └── ... (다른 공통 스타일 관련 파일)
-├── types/               # TypeScript 타입 정의 파일 모음
-│   └── styled.d.ts      # 스타일드 컴포넌트 테마 타입 확장용
-├── utils/               # 서버/클라이언트 공용 유틸리티 (예: date 포맷팅)
-├── .env.local           # 환경 변수 (Git 무시!)
-├── .eslintrc.json       # ESLint 설정
-├── .gitignore           # Git 무시 목록
-├── next.config.js       # Next.js 설정
-├── package.json         # 프로젝트 정보 및 의존성
-├── tsconfig.json        # TypeScript 설정
-└── README.md            # 프로젝트 설명
-```
-## <br>🐳 작업 흐름
+---
 
-1. 이슈 생성
-2. `develop` 최신화
-3. `develop`에서 새 `feature` 브랜치 생성
-4. 해당 브랜치에서 작업 진행
-5. 기능별 커밋 나눠서 작성
-6. 작업 완료 후 에러 체크 & push
-7. PR 작성하고 코드 리뷰 요청
-8. 리뷰 완료 후 develop에 머지
+## 협업 및 버전 관리: Git 히스토리 충돌 해결
+-   **문제 정의:** 팀원의 로컬 Git 작업 오류로 인해, 공유 브랜치(`develop`)의 HEAD가 이전 커밋으로 잘못 덮어씌워져 최신 기능 코드의 일부가 히스토리에서 보이지 않게 되는 긴급 상황이 발생함.
+-   **해결 과정:**
+    -   **대안 분석:**
+        1.  `git reset --hard`를 통한 강제 복구
+        2.  `git revert`를 통한 안전한 복구
+        
+        이미 문제의 커밋 위로 다른 팀원들의 새로운 커밋들이 push된 상황이었으므로, 1은 다른 팀원의 작업을 유실시킬 수 있는 매우 위험한 명령어라고 판단함.
+        
+    -   **최종 선택:** 팀 회의를 통해 `reset`과 `revert`의 차이점 및 각 명령어의 리스크를 설명하고, 가장 안전하며 협업 히스토리를 투명하게 유지할 수 있는 `git revert`를 통한 복구로 최종 결정됨.
+-   **결과:** 이슈 발생 후 30분 이내에 모든 코드를 손실 없이 복구하여, 프로젝트 딜레이를 완벽하게 방지함. 이 사건을 계기로, 팀 내에 해당 이슈 방지를 위한 Git 가이드라인을 팀 전체에 공유하여 협업 안정성을 강화함.
+-   **확장:** 향후 브랜치 보호 규칙을 적용하여 유사한 휴먼 에러를 시스템적으로 원천 차단할 수 있음.
 
-## <br>💡 시작 가이드
+---
 
-```shell
-### 1. 클론하기
-git clone https://github.com/codeit-sprint-14/wikied.git
+## UI/UX 및 최적화: 사용자 경험 디테일 개선
+<img width="743" height="661" alt="Frame 1171276243" src="https://github.com/user-attachments/assets/baba7200-c7c9-4707-ad41-a3829c95faa8" />
 
-### 2. 디렉토리 이동
-cd wikied
+-   **문제 정의:** 서비스의 첫인상을 결정하는 랜딩 페이지의 경험, 사소하지만 반복적인 불편함을 유발하는 UI, 그리고 불필요한 리소스로 인한 성능 저하 등 개선이 필요했음.
+-   **해결 과정:**
+    -   **인터랙티브 랜딩 페이지:** '인물 위키'라는 생소한 개념을 친근하게 전달하기 위해, Matter.js의 물리 엔진과 직접 제작한 Lottie 애니메이션을 결합하여 사용자의 인터랙션에 반응하는 동적인 랜딩 페이지를 단독으로 개발함.
+    -   **GNB 검색창 UX 개선:** 사용자가 스크롤하여 검색창이 보이지 않게 될 경우, GNB에 검색창이 동적으로 나타나도록 구현하여 UI 접근성을 향상시킴.
+    -   **리소스 최적화:** Figma 프로젝트의 비효율적인 구조를 재구성하여 페이지의 17%를 감축하고, 사용되지 않는 웹 폰트를 41% 제거하여 에셋 크기를 약 1.7MB 줄임. 이를 통해 초기 로딩 성능을 개선함.
+-   **결과:** 동적인 랜딩 페이지를 통해 서비스의 첫인상을 긍정적으로 형성하고 초기 이탈률을 낮추는 효과를 기대할 수 있었음. 작은 UX 개선들이 모여 서비스의 전체적인 완성도를 높였으며, 리소스 최적화를 통해 실질적인 성능 향상을 이뤄냄.
+-   **확장:** Lottie 애니메이션을 지연 로딩(lazy loading)하여 랜딩페이지 초기 로딩 속도를 개선할 수 있음.
 
-### 3. 패키지 설치
-npm install
+---
 
-### 4. 프로젝트 실행
-npm run dev
-
-```
-## <br>✨ 주요 기능
-
-### 🔐 회원가입 및 로그인 기능
-- 이메일 및 소셜 간편 로그인 지원
-- 인증된 사용자만 위키 및 게시물 작성 가능
-
-### 🧏🏻‍♂️ 위키 기능
-- 위키 생성, 수정, 삭제
-  - 인증된 사용자가 자신만의 위키를 자유롭게 작성하고 관리할 수 있습니다
-- 다른 유저의 위키 검색 및 열람
-  - 키워드 기반 검색으로 다양한 위키를 검색하고 열람할 수 있습니다
-
-### 📑 게시물 기능
--  게시물 작성, 수정, 삭제  
-    - 여러 개의 자유로운 주제 게시글을 작성할 수 있습니다
--  댓글 및 좋아요 기능  
-    - 게시물에 댓글을 달고 좋아요를 눌러 유저 간 상호작용이 가능합니다
--  일반 게시물 및 베스트 게시물 열람  
-    - 다른 유저의 게시물을 열람할 수 있으며 좋아요 수를 기준으로 인기 게시물을 강조해서 보여줍니다
- 
-### 🔥 404 페이지
-- 친화적인 404 페이지 제공
-    - 오류 메세지뿐만 아니라 인기 게시물 추천도 함께 노출됩니다 
-
-### 🔔 알림 기능
-- 댓글 작성, 위키 수정 등 주요 이벤트 발생시 실시간 알림 표시
-- 사용자의 활동 내역 빠르게 확인 가능
-
-### ✒️ 텍스트 에디터
-- 다양한 서식(굵기, 이미지 첨부, 글씨 정렬 등)을 적용한 위키, 게시물 작성 가능
-
-
-
-
-
-
-
-
-
+## CSS-in-JS: Styled Components와 SSR의 상충 관계
+-   **문제 정의:** 팀원 모두가 `Styled Components`에 익숙했지만, CSS-in-JS 라이브러리의 런타임 특성은 Next.js의 SSR 환경에서 초기 로딩 시 스타일이 적용되지 않는 깜빡임 현상과 성능 저하를 유발하는 기술적 문제가 있었음.
+-   **해결 과정:**
+    -   **대안 분석:**
+        1.  팀의 학습 곡선을 고려하여 익숙한 `Styled Components`를 유지하고 문제를 해결하는 방법
+        2.  Tailwind CSS와 같이 Next.js와 더 잘 맞는 다른 스타일링 솔루션을 도입하는 방법
+        
+        프로젝트의 짧은 기간을 고려하여 1을 선택하되, 문제 해결 과정을 통해 팀의 기술적 이해도를 높이는 것을 목표로 함.
+        
+    -   **최종 선택:** `next.config`에서 `compiler`에 styledComponents를 추가하고, 빌드 시점에 서버에서 생성된 스타일을 클라이언트에 미리 주입하는 방식으로 SSR 환경에서의 스타일 문제를 해결함.
+-   **결과:** 팀원들이 익숙한 기술 스택을 유지하면서도 Next.js 환경에서 발생하는 기술적 문제를 성공적으로 해결함. 이 과정을 통해 팀 전체가 CSS-in-JS와 서버 사이드 렌더링의 동작 원리에 대해 더 깊이 이해하는 계기가 됨.
+-   **확장:** 이 경험을 통해, 향후 Next.js 프로젝트에서는 'Zero-Runtime' CSS-in-JS 라이브러리나 `Tailwind CSS`를 사용하는 것이 프레임워크의 철학에 더 부합하며 장기적인 성능과 유지보수성 측면에서 더 유리하다는 기술적 결론을 내림.
